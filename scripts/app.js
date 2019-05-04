@@ -1,7 +1,7 @@
 // getting the references here
 const inputVal = document.querySelector('#task');
 const formSubmit = document.querySelector('#taskForm');
-const clearTask = document.querySelector('#clearList');
+const clearTask = document.querySelector('.clearList');
 const ulParent = document.querySelector('.collection');
 
 //event listener on form submit
@@ -53,4 +53,10 @@ ulParent.addEventListener('click', (e) => {
     if (e.target.parentElement.classList.contains('deleteList')) {
         e.target.parentElement.parentElement.remove();
     }
+})
+
+// to delete the whole list
+clearTask.addEventListener('click' , (e) => {
+    ulParent.innerHTML='';
+
 })
