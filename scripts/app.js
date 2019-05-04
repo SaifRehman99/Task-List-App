@@ -5,13 +5,13 @@ const clearTask = document.querySelector('#clearList');
 const ulParent = document.querySelector('.collection');
 
 //event listener on form submit
-formSubmit.addEventListener('submit',(e) => {
+formSubmit.addEventListener('submit', (e) => {
 
     // to prevent the default behaviour
     e.preventDefault();
 
     // validating here
-    if(inputVal.value === ''){
+    if (inputVal.value === '') {
         alert('Please Enter Data')
     }
 
@@ -32,7 +32,7 @@ formSubmit.addEventListener('submit',(e) => {
 
     // adding class to the element
     a.className = 'deleteList secondary-content';
-    
+
     // adding HTML inside the a element
     a.innerHTML = `<i class = "fa fa-remove"></i>`
 
@@ -40,9 +40,17 @@ formSubmit.addEventListener('submit',(e) => {
     li.appendChild(a);
 
     // now appending the li to the parent ul
-     ulParent.appendChild(li);
+    ulParent.appendChild(li);
 
     //  clearing the input field here
     inputVal.value = '';
 
+})
+
+// to delete the item in the ul
+ulParent.addEventListener('click', (e) => {
+    // getting the html of remove link
+    if (e.target.parentElement.classList.contains('deleteList')) {
+        e.target.parentElement.parentElement.remove();
+    }
 })
