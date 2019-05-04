@@ -10,22 +10,15 @@ const getItem = () => {
     let data = localStorage.getItem('list');
 
     return data !== null ? JSON.parse(data) : [];
-
 }
-
 
 // returning the list data from the localStorage
 let listData = getItem();
 
-
 // saving data to the localStorage
 let savingData = (item) => {
-
     localStorage.setItem('list', JSON.stringify(item));
 }
-
-
-
 
 //event listener on form submit
 formSubmit.addEventListener('submit', (e) => {
