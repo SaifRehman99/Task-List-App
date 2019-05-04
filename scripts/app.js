@@ -72,6 +72,8 @@ formSubmit.addEventListener('submit', (e) => {
 
         // saving data here
         savingData(listData);
+        M.toast({ html: 'Item Added!', classes: 'rounded' });
+
 
         //  clearing the input field here
         inputVal.value = '';
@@ -118,16 +120,19 @@ ulParent.addEventListener('click', (e) => {
     if (e.target.parentElement.classList.contains('deleteList')) {
         e.target.parentElement.parentElement.remove();
     }
-    listData.forEach((item,index) => {
-        if(e.target.parentElement.parentElement.textContent === item){
-            listData.splice(index,1);
+    listData.forEach((item, index) => {
+        if (e.target.parentElement.parentElement.textContent === item) {
+            listData.splice(index, 1);
         }
         savingData(listData);
     })
+    M.toast({ html: 'Item Deleted!', classes: 'rounded' });
+
 })
 
 // to delete the whole list
 clearTask.addEventListener('click', (e) => {
     // clearing data from the localStorage
     localStorage.clear();
+    M.toast({ html: 'All Item Deleted!', classes: 'rounded' });
 })
