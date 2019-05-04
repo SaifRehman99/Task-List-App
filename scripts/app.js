@@ -61,19 +61,15 @@ formSubmit.addEventListener('submit', (e) => {
         // adding data to the array
         listData.push(data);
 
-
-
         // saving data here
         savingData(listData);
         M.toast({ html: 'Item Added!', classes: 'rounded' });
-
 
         //  clearing the input field here
         inputVal.value = '';
     }
 
 })
-
 
 // displaying the saved data in local storage on the UI
 const displayList = (list) => {
@@ -105,7 +101,6 @@ const displayList = (list) => {
     })
 }
 displayList(listData);
-
 
 // to delete the item in the ul
 ulParent.addEventListener('click', (e) => {
