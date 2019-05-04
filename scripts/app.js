@@ -4,6 +4,29 @@ const formSubmit = document.querySelector('#taskForm');
 const clearTask = document.querySelector('.clearList');
 const ulParent = document.querySelector('.collection');
 
+// getting item from localStorage
+const getItem = () => {
+
+    let data = localStorage.getItem('list');
+    
+    return data !== null ? JSON.parse(data) : [];
+    
+}
+
+
+// returning the list data from the localStorage
+let listData = getItem();
+
+
+// saving data to the localStorage
+let savingData = (item) => {
+
+    localStorage.setItem('list',JSON.stringify(item));        
+}
+
+
+
+
 //event listener on form submit
 formSubmit.addEventListener('submit', (e) => {
 
@@ -41,6 +64,14 @@ formSubmit.addEventListener('submit', (e) => {
 
     // now appending the li to the parent ul
     ulParent.appendChild(li);
+
+    // adding data to the array
+    listData.push(data);
+
+
+
+    // saving data here
+    savingData(listData);
 
     //  clearing the input field here
     inputVal.value = '';
