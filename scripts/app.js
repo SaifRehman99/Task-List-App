@@ -8,9 +8,9 @@ const ulParent = document.querySelector('.collection');
 const getItem = () => {
 
     let data = localStorage.getItem('list');
-    
+
     return data !== null ? JSON.parse(data) : [];
-    
+
 }
 
 
@@ -21,7 +21,7 @@ let listData = getItem();
 // saving data to the localStorage
 let savingData = (item) => {
 
-    localStorage.setItem('list',JSON.stringify(item));        
+    localStorage.setItem('list', JSON.stringify(item));
 }
 
 
@@ -37,6 +37,9 @@ formSubmit.addEventListener('submit', (e) => {
     if (inputVal.value === '') {
         alert('Please Enter Data')
     }
+    else{
+
+    
 
     // getting the input value here
     let data = inputVal.value;
@@ -75,8 +78,43 @@ formSubmit.addEventListener('submit', (e) => {
 
     //  clearing the input field here
     inputVal.value = '';
+    }
 
 })
+
+
+// displaying the saved data in local storage on the UI
+const displayList = (list) => {
+    list.forEach((item) => {
+        // creating li elements
+        const li = document.createElement('li');
+
+        // adding class to li
+        li.className = 'collection-item';
+
+        //adding text to the li
+        li.textContent = item;
+
+        // creating the remove button here
+        const a = document.createElement('a');
+
+        // adding class to the element
+        a.className = 'deleteList secondary-content';
+
+        // adding HTML inside the a element
+        a.innerHTML = `<i class = "fa fa-remove"></i>`
+
+        // appending the a element to the li
+        li.appendChild(a);
+
+        // now appending the li to the parent ul
+        ulParent.appendChild(li);
+
+    })
+}
+displayList(listData)
+
+
 
 // to delete the item in the ul
 ulParent.addEventListener('click', (e) => {
@@ -87,7 +125,7 @@ ulParent.addEventListener('click', (e) => {
 })
 
 // to delete the whole list
-clearTask.addEventListener('click' , (e) => {
-    ulParent.innerHTML='';
+clearTask.addEventListener('click', (e) => {
+    ulParent.innerHTML = '';
 
 })
