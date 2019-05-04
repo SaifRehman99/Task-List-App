@@ -37,47 +37,44 @@ formSubmit.addEventListener('submit', (e) => {
     if (inputVal.value === '') {
         alert('Please Enter Data')
     }
-    else{
+    else {
+        // getting the input value here
+        let data = inputVal.value;
 
-    
+        // creating li elements
+        const li = document.createElement('li');
 
-    // getting the input value here
-    let data = inputVal.value;
+        // adding class to li
+        li.className = 'collection-item';
 
-    // creating li elements
-    const li = document.createElement('li');
+        //adding text to the li
+        li.textContent = data;
 
-    // adding class to li
-    li.className = 'collection-item';
+        // creating the remove button here
+        const a = document.createElement('a');
 
-    //adding text to the li
-    li.textContent = data;
+        // adding class to the element
+        a.className = 'deleteList secondary-content';
 
-    // creating the remove button here
-    const a = document.createElement('a');
+        // adding HTML inside the a element
+        a.innerHTML = `<i class = "fa fa-remove"></i>`
 
-    // adding class to the element
-    a.className = 'deleteList secondary-content';
+        // appending the a element to the li
+        li.appendChild(a);
 
-    // adding HTML inside the a element
-    a.innerHTML = `<i class = "fa fa-remove"></i>`
+        // now appending the li to the parent ul
+        ulParent.appendChild(li);
 
-    // appending the a element to the li
-    li.appendChild(a);
-
-    // now appending the li to the parent ul
-    ulParent.appendChild(li);
-
-    // adding data to the array
-    listData.push(data);
+        // adding data to the array
+        listData.push(data);
 
 
 
-    // saving data here
-    savingData(listData);
+        // saving data here
+        savingData(listData);
 
-    //  clearing the input field here
-    inputVal.value = '';
+        //  clearing the input field here
+        inputVal.value = '';
     }
 
 })
@@ -112,8 +109,7 @@ const displayList = (list) => {
 
     })
 }
-displayList(listData)
-
+displayList(listData);
 
 
 // to delete the item in the ul
@@ -122,10 +118,16 @@ ulParent.addEventListener('click', (e) => {
     if (e.target.parentElement.classList.contains('deleteList')) {
         e.target.parentElement.parentElement.remove();
     }
+    listData.forEach((item,index) => {
+        if(e.target.parentElement.parentElement.textContent === item){
+            listData.splice(index,1);
+        }
+        savingData(listData);
+    })
 })
 
 // to delete the whole list
 clearTask.addEventListener('click', (e) => {
-    ulParent.innerHTML = '';
-
+    // clearing data from the localStorage
+    localStorage.clear();
 })
